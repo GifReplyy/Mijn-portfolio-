@@ -1,0 +1,158 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    /* background: linear-gradient(to bottom, #f4f4f4, #bab7b7);
+    animation: background-animation 10s ease-in-out infinite; */
+    background: linear-gradient(-45deg, #ffffff, #d6d5d5, #f3f1f2, #d5d2d2, #e5e4e1, #cac8c8, #ffffff, #c6c9ca);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    margin: 0;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+#formulier {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.voortgang {
+    margin-bottom: 30px;
+}
+
+.voortgang .voortgangs-balk {
+    height: 10px;
+    background: linear-gradient(-45deg, #4caf4f5f, #d6d5d5, #4caf4f5f, #d6d5d5, #4caf4f5f);
+    animation: gradient 10s ease infinite;
+    border-radius: 5px;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
+
+.pagina.actief ~ .voortgang .voortgangs-balk {
+    width: calc((100% / 4) * (huidigePagina + 1));
+}
+
+.pagina {
+    display: none;
+    margin-top: 30px;
+}
+
+.pagina.actief {
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    outline: none;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+button:hover {
+    background-color: #3f913f;
+    transform: translateY(-3px);
+}
+
+#resultaat {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.voortgang {
+    margin-bottom: 30px;
+    width: 100%;
+    position: relative;
+}
+
+.voortgang .voortgangs-stappen {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0 20px;
+}
+
+.voortgang .voortgangs-stappen > div {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.voortgang .voortgangs-stappen > div:before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #4caf50;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.voortgang .voortgangs-stappen > div:first-child:before {
+    left: -25%;
+}
+
+.voortgang .voortgangs-stappen > div:last-child:before {
+    right: -25%;
+}

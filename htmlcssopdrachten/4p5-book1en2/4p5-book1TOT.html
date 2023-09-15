@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    }
+
+    .container {
+    text-align: center;
+    margin-top: 50px;
+    }
+
+    h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    }
+
+    .carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    }
+
+    .book {
+    display: flex;
+    min-width: 250px;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #e1dede8e;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    }
+
+    .book:hover {
+      background-color: #cac8c88e;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .carousel-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .book img {
+      width: 120px;
+      height: 180px;
+      margin-bottom: 10px;
+    }
+
+    .book button {
+      margin-top: 10px;
+    }
+
+    #input {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      font-size: 16px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #search-container {
+      margin-bottom: 20px;
+    }
+
+    #search {
+      width: 200px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    #boekenlijst-section {
+      position: relative;
+      overflow: hidden;
+      padding: 50px;
+      z-index: 1;
+    }
+
+    .Blob1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      fill: #A7F0BA;
+      width: 50vmax;
+      z-index: -1;
+      animation: blob1 100s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
+
+    @keyframes blob1 {
+      0%   { transform: scale(1)   translate(10px, -30px); }
+      38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+      40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+      78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+      80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+      100% { transform: scale(1)   translate(10px, -30px); }
+    }
+
+    #zoekresultaten-section {
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.47);
+      background-color: #ededed;
+      padding: 50px;
+      margin-top: 75px;
+      background-position: center calc(50% - 50px); /* Verplaats de achtergrondpositie om het parallax-effect te creëren */
+    }
+
+  </style>
+</head>
+
+<body>
+  <section id="boekenlijst-section">
+    <h2>Boekenlijst</h2>
+    <svg class="Blob1" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 350">
+      <path d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z"/>
+    </svg>
+    <div class="carousel-container">
+      <div class="carousel" id="boekenlijst"></div>
+    </div>
+
+    <section id="zoekresultaten-section">
+      <h2>Zoekresultaten</h2>
+      <div id="search-container">
+        <input type="text" id="search" placeholder="Zoek naar boeken">
+        <button onclick="searchBook()">Zoeken</button>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel" id="search-list"></div>
+      </div>
+    
+    </section>
+  </section>
+
+  
+
+  <script>
+    var boekenwinkel = {
+      boekenlijst: [
+        {
+          titel: "Milky Way: A Guide to the Galaxy",
+          auteur: "Arthur C. Stardust",
+          jaar: "1 januari 2023",
+          afbeelding: "https://m.media-amazon.com/images/I/51dxaokpWqL._SX329_BO1,204,203,200_.jpg"
+        },
+        {
+          titel: "Predictably Irrational: The Hidden Forces That Shape Our Decisions",
+          auteur: "Dan Ariely",
+          jaar: "5 maart 2009",
+          afbeelding: "https://m.media-amazon.com/images/I/51B7NcJlnxL._SX328_BO1,204,203,200_.jpg"
+        },
+        {
+          titel: "Think Again: The Power of Knowing What You Don't Know",
+          auteur: "Adam Grant",
+          jaar: "29 januari 2021",
+          afbeelding: "https://m.media-amazon.com/images/I/41Ug+93BLaL._SX331_BO1,204,203,200_.jpg"
+        }
+      ]
+    };
+
+    var nepBoeken = [
+      {
+          titel: "Milky Way: A Guide to the Galaxy",
+          auteur: "Arthur C. Stardust",
+          jaar: "1 januari 2023",
+          afbeelding: "https://m.media-amazon.com/images/I/51dxaokpWqL._SX329_BO1,204,203,200_.jpg"
+      },
+      {
+          titel: "Predictably Irrational: The Hidden Forces That Shape Our Decisions",
+          auteur: "Dan Ariely",
+          jaar: "5 maart 2009",
+          afbeelding: "https://m.media-amazon.com/images/I/51B7NcJlnxL._SX328_BO1,204,203,200_.jpg"
+      },
+      {
+          titel: "Think Again: The Power of Knowing What You Don't Know",
+          auteur: "Adam Grant",
+          jaar: "29 januari 2021",
+          afbeelding: "https://m.media-amazon.com/images/I/41Ug+93BLaL._SX331_BO1,204,203,200_.jpg"
+      },
+      {
+        titel: "The Art of Procrastination: A Guide to Effective Dawdling, Lollygagging, and Postponing",
+        auteur: "John Perry",
+        jaar: "1 april 2012",
+        afbeelding: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYucG5cnO6ygr6U2MYqFgPReDztkhk5RUsa9oSe0CoX6m2jv-"
+      },
+      {
+        titel: "The Subtle Art of Not Giving a Duck: A Counterintuitive Approach to Living a Good Life",
+        auteur: "Mark Manson",
+        jaar: "15 september 2023",
+        afbeelding: "https://media.s-bol.com/rmLVw1Qj2Xyw/550x833.jpg"
+      },
+      {
+        titel: "The Hitchhiker's Guide to the Chatbot",
+        auteur: "Douglas Adams",
+        jaar: "12 mei 2022",
+        afbeelding: "https://substack-post-media.s3.amazonaws.com/public/images/faab0a22-7bcf-4f92-873e-88d9b8bccb22_1400x1400.png"
+      },
+      {
+        titel: "The Power of Now",
+        auteur: "Eckhart Tolle",
+        jaar: "1 maart 1997",
+        afbeelding: "https://m.media-amazon.com/images/I/51iY6s7tN9L._SX324_BO1,204,203,200_.jpg"
+      },
+      {
+        titel: "The Alchemist",
+        auteur: "Paulo Coelho",
+        jaar: "1 mei 1988",
+        afbeelding: "https://m.media-amazon.com/images/I/81a+nwOZ+8L._SY346_.jpg"
+      },
+      {
+        titel: "To Kill a Mockingbird",
+        auteur: "Harper Lee",
+        jaar: "11 juli 1960",
+        afbeelding: "https://m.media-amazon.com/images/I/81OthjkJBhL._SY346_.jpg"
+      },
+      {
+        titel: "1984",
+        auteur: "George Orwell",
+        jaar: "8 juni 1949",
+        afbeelding: "https://m.media-amazon.com/images/I/71OL+x2FsRL._SY346_.jpg"
+      },
+      {
+        titel: "Pride and Prejudice",
+        auteur: "Jane Austen",
+        jaar: "28 januari 1813",
+        afbeelding: "https://m.media-amazon.com/images/I/91RjJauQwGL._SY346_.jpg"
+      },
+      {
+        titel: "The Great Gatsby",
+        auteur: "F. Scott Fitzgerald",
+        jaar: "10 april 1925",
+        afbeelding: "https://m.media-amazon.com/images/I/91fZg4z62OL._SY346_.jpg"
+      }
+    ];
+
+    function displayBoekenlijst() {
+      var boekenlijstContainer = document.getElementById("boekenlijst");
+      boekenlijstContainer.innerHTML = "";
+
+      displayCarousel(boekenwinkel.boekenlijst, "boekenlijst");
+    }
+
+    function displayCarousel(books, containerId) {
+      var carouselContainer = document.getElementById(containerId);
+      carouselContainer.innerHTML = "";
+
+      var carousel = document.createElement("div");
+      carousel.className = "carousel";
+
+      for (var i = 0; i < books.length; i++) {
+        var book = books[i];
+        var bookDiv = BookElement(book, i, containerId);
+        carousel.appendChild(bookDiv);
+      }
+
+      carouselContainer.appendChild(carousel);
+    }
+
+    function BookElement(book, index, containerId) {
+      var bookDiv = document.createElement("div");
+      bookDiv.className = "book";
+
+      var image = document.createElement("img");
+      image.src = book.afbeelding;
+      image.alt = book.titel;
+      bookDiv.appendChild(image);
+
+      var title = document.createElement("h3");
+      title.textContent = book.titel;
+      bookDiv.appendChild(title);
+
+      var author = document.createElement("p");
+      author.textContent = "Auteur: " + book.auteur;
+      bookDiv.appendChild(author);
+
+      var year = document.createElement("p");
+      year.textContent = "Jaar: " + book.jaar;
+      bookDiv.appendChild(year);
+
+      var button = document.createElement("button");
+      button.textContent = containerId === "search-list" ? "Toevoegen" : "Verwijderen";
+      button.addEventListener("click", function() {
+        if (containerId === "search-list") {
+          addBookToList(index);
+        } else if (containerId === "boekenlijst") {
+          removeBookFromList(index);
+        }
+      });
+      bookDiv.appendChild(button);
+
+      return bookDiv;
+    }
+
+    function addBookToList(index) {
+      var book = nepBoeken[index];
+      var existingIndex = boekenwinkel.boekenlijst.findIndex(function(item) {
+        return item.titel === book.titel;
+      });
+
+      if (existingIndex === -1) {
+        boekenwinkel.boekenlijst.push(book);
+        displayBoekenlijst();
+      }
+    }
+
+    function removeBookFromList(index) {
+      boekenwinkel.boekenlijst.splice(index, 1);
+      displayBoekenlijst();
+    }
+
+    function searchBook() {
+      var searchTerm = document.getElementById("search").value;
+      var searchList = document.getElementById("search-list");
+      searchList.innerHTML = "";
+
+      var results = nepBoeken.filter(function(book) {
+        return book.titel.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      displayCarousel(results, "search-list");
+
+      if (results.length === 0) {
+        var noResults = document.createElement("p");
+        noResults.textContent = "Geen resultaten gevonden.";
+        searchList.appendChild(noResults);
+      }
+    }
+
+    displayBoekenlijst();
+
+    // Stap 1: JSON-object weergeven op de console
+    console.log("JSON-object, Boekenwinkel:");
+    console.log(boekenwinkel);
+
+    // Stap 2: JSON-object naar JSON-string converteren en weergeven op de console
+    var jsonString = JSON.stringify(boekenwinkel);
+    console.log("JSON-string, Boekenwinkel:");
+    console.log(jsonString);
+
+    // Stap 3: JSON-string naar JavaScript-object converteren en eigenschappen weergeven op de console
+    var jsonObject = JSON.parse(jsonString);
+    console.log("JavaScript-object, Boekenwinkel:");
+    console.log(jsonObject);
+
+    var parallaxContainer = document.getElementById("zoekresultaten-section");
+    var parallaxSpeed = 0.2; // Pas de snelheid aan naar wens
+
+    window.addEventListener("scroll", function() {
+      var yOffset = window.pageYOffset;
+      var parallaxOffset = yOffset * parallaxSpeed;
+      parallaxContainer.style.transform = "translateY(" + -parallaxOffset + "px)";
+    });
+  </script>
+</body>
+</html>

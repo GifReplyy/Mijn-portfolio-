@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>03</title>
+	<style>
+		body {
+			background-color: lightblue;
+			color: darkblue;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			color: darkred;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>03 operator.html</h1>
+	<p id="resultaat1"></p>
+	
+	<script>
+		// Hier komt je JavaScript code
+
+        function myCalc() {
+            const getal = prompt("Voer een getal in");
+
+            if ((getal === "") || (getal === " ")) {
+                return("You didn't give a value");
+            }
+            else if (isNaN(getal)){
+                return("That isn't a number...");
+            }
+            else if (getal){
+                const result1 = Number(getal) + 10 
+                const result2 = Number(getal) - 5
+                const result3 = Number(getal) * 3
+                const result4 = Number(getal) / 2
+
+                return ("<b> Resultaat berekeningen: <b> <br><br>" +
+                        getal + " += 10" + " = " + result1 + "<br>" + 
+                        getal + " -= 5" + " = " + result2 + "<br>" +
+                        getal + " *= 3" + " = " + result3 + "<br>" +
+                        getal + " /= 2" + " = " + result4)         
+            }
+            else {
+                return("Nothing was provided");
+            }
+        }
+        document.getElementById("resultaat1").innerHTML = myCalc();
+
+
+	</script>
+</body>
+</html>

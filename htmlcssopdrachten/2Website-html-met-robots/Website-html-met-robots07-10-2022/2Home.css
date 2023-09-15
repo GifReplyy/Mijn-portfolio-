@@ -1,0 +1,21 @@
+body {
+    background-image: url(images/robot-run2.jpg);
+    background-position-y: 80px;
+    background-position-x: center;
+}
+
+main p {
+    background-color: rgba(33, 126, 163, 0.8);
+
+    max-width: 460px;
+    max-height: fit-content;
+
+    font-size: 25px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+}
+

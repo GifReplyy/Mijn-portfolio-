@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>01</title>
+	<style>
+		body {
+			background-color: lightblue;
+			color: darkblue;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			color: darkred;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>01 naam.html</h1>
+	<p id="resultaat1"></p>
+    <p id="resultaat2"></p>
+	
+	<script>
+		// Hier komt je JavaScript code
+
+        // Naam functie met error handlers
+        function myName() {
+            const name = prompt("What is your name?");
+
+            if ((name === "") || (name === " ")) {
+                return("You didn't give a value");
+            }
+            else if (name){
+                return("Hello, " + name);
+            }
+            else {
+                return("Nothing was provided");
+            }
+        }
+        document.getElementById("resultaat1").innerHTML = myName();
+
+        // Leeftijd functie met error handlers
+        function myAge() {
+            const age = prompt("How old are you?");
+
+            if ((age === "") || (age === " ")) {
+                return("You didn't give a value");
+            }
+            else if (age > "1"){
+                return("You are, " + age + " years old.");
+            }
+            else if (age === "1"){
+                return("You are, " + age + " year old.");
+            }
+            else {
+                return("Nothing was provided");
+            }
+        }
+        document.getElementById("resultaat2").innerHTML = myAge();
+
+	</script>
+</body>
+</html>

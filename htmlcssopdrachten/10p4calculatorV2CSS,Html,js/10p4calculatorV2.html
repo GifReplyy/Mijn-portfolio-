@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>10</title>
+  <link rel="stylesheet" href="calculatorV2.css">
+</head>
+<body>
+
+	<h1>10 calculatorV2.html</h1>
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="keys">
+          <button class="parenthesis" value="(" onclick="addToScreen(this.value)">(</button>
+          <button class="parenthesis" value=")" onclick="addToScreen(this.value)">)</button>
+          <button class="delete" onclick="deleteLastValue()">DEL</button>
+          <button class="all-clear" onclick="clearScreen()">C</button>
+
+          <button value="0" onclick="addToScreen(this.value)">0</button>
+          <button value="1" onclick="addToScreen(this.value)">1</button>
+          <button value="2" onclick="addToScreen(this.value)">2</button>
+          <button class="operator" value="+" onclick="addOperator(this.value)">+</button>
+
+          <button value="3" onclick="addToScreen(this.value)">3</button>
+          <button value="4" onclick="addToScreen(this.value)">4</button>
+          <button value="5" onclick="addToScreen(this.value)">5</button>
+          <button class="operator" value="-" onclick="addOperator(this.value)">-</button>
+
+          <button value="6" onclick="addToScreen(this.value)">6</button>
+          <button value="7" onclick="addToScreen(this.value)">7</button>
+          <button value="8" onclick="addToScreen(this.value)">8</button>
+          <button class="operator" value="*" onclick="addOperator(this.value)">&times;</button>
+
+          <button class="decimal" onclick="addDecimal()">,</button>
+          <button value="9" onclick="addToScreen(this.value)">9</button>
+          <button id="equals" onclick="calculate()">=</button>
+          <button class="operator" value="/" onclick="addOperator(this.value)">/</button>
+        </div>
+      </div>
+
+  <script src="calculatorV2.js"></script>
+</body>
+</html>

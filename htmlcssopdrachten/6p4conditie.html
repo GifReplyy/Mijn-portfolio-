@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>06</title>
+	<style>
+		body {
+			background-color: lightblue;
+			color: darkblue;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			color: darkred;
+			margin-top: 50px;
+		}
+
+        form {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+	    }
+
+        label {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: darkred;
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="number"] {
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+
+        button {
+            background-color: darkred;
+            color: white;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background-color: red;
+        }
+
+        .result {
+            margin-top: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: darkred;
+            text-transform: uppercase;
+        }
+	</style>
+</head>
+
+<body>
+	<h1>06 conditie.html</h1>
+    <hr>
+    <h1>Stemmen</h1>
+
+    <form id="stemForm">
+        <label for="leeftijd">Wat is je leeftijd?</label>
+        <input type="number" id="leeftijd" name="leeftijd" min="0" max="120" required>
+    
+        <button type="submit">Bepaal</button>
+    </form>
+    
+    <div id="resultaat" class="result"></div>
+    
+    <script>
+        const form = document.getElementById('stemForm');
+        const resultaat = document.getElementById('resultaat');
+    
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            let leeftijd = document.getElementById('leeftijd').value;
+    
+            if (leeftijd >= 18) {
+                resultaat.innerHTML = 'Je bent oud genoeg om te stemmen!';
+            } else {
+                resultaat.innerHTML = 'Je bent nog niet oud genoeg om te stemmen.';
+            }
+        });
+    </script>
+</body>
+</html>

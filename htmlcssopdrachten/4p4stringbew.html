@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>04</title>
+	<style>
+		body {
+			background-color: lightblue;
+			color: darkblue;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			color: darkred;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>04 stringbewerking.html</h1>
+	<p id="resultaat1"></p>
+	
+    <script>
+		function yourName() {
+			var naam = prompt("Wat is je volledige naam?");
+            if ((naam === "") || (naam === " ")){
+                var greeting = "Er is geen naam gegeven."
+                document.getElementById("resultaat1").innerHTML = greeting
+            }
+            else {
+                var greeting = "Hallo, " + naam;
+
+                // \s zoekt naar spatiekarakters en de g voor globaal en die spaties vervangt hij met '' ofwel niks
+			    var naamLengte = naam.replace(/\s+/g, '').length;
+
+                // Split de variabele naam in voor en achternaam
+                var naamArray = naam.split(" ");
+                var voornaam = naamArray[0];
+
+                var tussenvoegsel = prompt("Typ je tussenvoegsel in en als je die niet hebt laat je dit open!");
+                if ((tussenvoegsel === "") || (tussenvoegsel === " ")) {
+                    var tussenvoegselTekst = ""
+                }
+                else {
+                    var tussenvoegselTekst= "<strong>Tussenvoegsel:</strong> " + tussenvoegsel + "<br>"
+                }
+
+                // je legt 10 potloden neer en je pakt de laatste (-1) welke heb je dan in je hand? De laastste en die schrijf je op!
+                var achternaam = naamArray[naamArray.length - 1]; 
+
+                document.getElementById("resultaat1").innerHTML = 
+                        greeting + "<br><br>" +
+                        "<strong>Lengte van de naam:</strong> " + 
+                        naamLengte + "<br><br>" +
+                        "<strong>Voornaam:</strong> " + voornaam + "<br>" +
+                        tussenvoegselTekst +
+                        "<strong>Achternaam:</strong> " + achternaam;
+            }
+		}
+
+		window.onload = yourName;
+	</script>
+</body>
+</html>

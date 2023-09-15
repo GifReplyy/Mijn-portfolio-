@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>05</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="datatypen.css">
+</head>
+
+<body>
+	<h1>05 datatypen.html</h1>
+
+    <div class="voortgang">
+        <div class="voortgangs-balk"></div>
+    </div>
+  
+      <form id="formulier">
+        <div class="pagina pagina1 actief">
+          <label for="naam">Wat is je naam?</label>
+          <input type="text" id="naam" placeholder="Typ hier je naam" required>
+          <button type="button" class="volgende">Volgende</button>
+        </div>
+  
+        <div class="pagina pagina2">
+          <label for="leeftijd">Hoe oud ben je?</label>
+          <input type="number" id="leeftijd" placeholder="Typ hier je leeftijd" required>
+          <button type="button" class="volgende">Volgende</button>
+        </div>
+  
+        <div class="pagina pagina3">
+          <label for="gewicht">Wat is je gewicht in kilogram?</label>
+          <input type="number" id="gewicht" placeholder="Typ hier je gewicht" required>
+          <button type="button" class="volgende">Volgende</button>
+        </div>
+  
+        <div class="pagina pagina4">
+          <label for="is-getrouwd">Ben je getrouwd?</label>
+          <input type="checkbox" id="is-getrouwd">
+          <button type="button" class="volgende">Volgende</button>
+        </div>
+      </form>
+  
+      <div id="resultaat"></div>
+
+    <script src="datatypen.js"></script>
+         
+</body>
+</html>

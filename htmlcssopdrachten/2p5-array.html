@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Arrays in JavaScript</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Arrays in JavaScript</h1>
+    var nummers = [1, 2, 3, 4, 5]
+    <div id="output"></div>
+  </div>
+
+  <script>
+    var nummers = [1, 2, 3, 4, 5];
+
+    var outputElement = document.getElementById("output");
+
+    // Lengte van de array bepalen en weergeven
+    outputElement.innerHTML += "Lengte van de array nummers: " + nummers.length + "<br>";
+
+    // Eerste element van de array weergeven
+    outputElement.innerHTML += "Eerste element van de array nummers: " + nummers[0] + "<br>";
+
+    // Laatste element van de array weergeven
+    outputElement.innerHTML += "Laatste element van de array nummers: " + nummers[nummers.length - 1] + "<br>";
+  </script>
+</body>
+</html>

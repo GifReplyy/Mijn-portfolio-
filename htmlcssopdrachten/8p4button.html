@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>08</title>
+	<style>
+		body {
+			background-color: lightblue;
+			color: darkblue;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		
+		h1 {
+			color: darkred;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>08 button.html</h1>
+    <h1>Aantal: <span id="aantal">0</span></h1>
+	<button id="verhoog">Verhoog</button>
+	<button id="verlaag">Verlaag</button>
+	
+	<script>
+        let aantal = 0;
+
+        document.getElementById("verhoog").addEventListener("click", function(){
+            aantal++;
+            document.getElementById("aantal").innerHTML = aantal;
+        });
+
+        document.getElementById("verlaag").addEventListener("click", function(){
+             aantal--;
+             document.getElementById("aantal").innerHTML = aantal;
+        });
+
+
+	</script>
+</body>
+</html>
