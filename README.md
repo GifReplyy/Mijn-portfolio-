@@ -1,5 +1,5 @@
 <h1>(rekenmachine maken);</h1>
 
-voor 10p4calculatorV2CSS,Html,js een uitleg video hieronder: 
+<p>Voor 10p4calculatorV2CSS, Html, en JavaScript, bekijk de uitlegvideo hieronder:</p>
 
-<a> https://drive.google.com/file/d/1IQLrPmJRnaBFafFYqbQWQEcUussoivoY/view?usp=sharing </a>
+<a href="https://drive.google.com/file/d/1IQLrPmJRnaBFafFYqbQWQEcUussoivoY/view?usp=sharing">Uitlegvideo</a>
