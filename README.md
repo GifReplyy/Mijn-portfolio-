@@ -1,4 +1,4 @@
-<h1>(rekenmachine maken);</h1>
+<h1>Rekenmachine maken;</h1>
 
 <p>Voor 10p4calculatorV2CSS, Html, en JavaScript, bekijk de uitlegvideo hieronder:</p>
 
